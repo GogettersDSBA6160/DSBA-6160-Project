@@ -1,7 +1,7 @@
 # DSBA-6160-Project
 
 ## Menu
-* [Test Link Section](#Test-Link-Section)
+* [Test Link Section](#test-link-section)
 
 
 
