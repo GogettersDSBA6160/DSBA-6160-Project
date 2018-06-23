@@ -77,6 +77,10 @@ To realize the project’s success, the following deliverables must be achieved:
 
 ## Schema
 
+<p align='left'>
+    <img src='./img/schema.png' width='800' alt='petservice schema'>
+</p>
+
 ## Data Dictionary
 
 ## Advanced SQL Statements
