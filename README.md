@@ -31,6 +31,8 @@
 ## Executive Summary
 The ‘Go Getters’ project team will consist of Parker Jamison, Khalil Khouy, Paul Blasé and Ashokanand Deo.  The project will document the business rules set forth from the customer.  These business rules will guide the project team during the design of a fully normalized database system implemented in MySQL to replicate the functionality of rover.com for Dr. William Patel.  Dr. Patel would also like to enhance the functionality of his site by adding a training and certification class for the individual service providers.  This project will be completed by June 25th 2018 at the conclusion of the last class session.  
 
+[back to top](#menu)
+
 ## Project Scope
 To realize the project’s success, the following deliverables must be achieved:
 * Identify project group members, create a team name and take a group photo to put on the project’s GitHub page.
@@ -44,6 +46,8 @@ To realize the project’s success, the following deliverables must be achieved:
   * Stored Procedures, Trigger, two advanced views using nested queries, group by, sort and conditional statements, transaction and Indexes for reports to optimize queries for the advanced views.   
   * A Simple web UI with screenshots utilizing Insert, Update, Delete for one table and Select statement for one of the reports (a video will also be ok).
   * Make GitHub site public.
+
+[back to top](#menu)
 
 ## Business Rules
 * Replicate functionality of www.rover.com
@@ -69,11 +73,15 @@ To realize the project’s success, the following deliverables must be achieved:
 * Discount for providers when using the same service. (Stretch Goals)
 * Military Discount, Student Discount, Senior Citizen Discount, Employer Discount. (Stretch Goals)
 
+[back to top](#menu)
+
 ## EERD
 
 <p align='left'>
     <img src='./img/eerd.png' width='800' alt='petservice EERD'>
 </p>
+
+[back to top](#menu)
 
 ## Schema
 
@@ -81,73 +89,89 @@ To realize the project’s success, the following deliverables must be achieved:
     <img src='./img/schema.png' width='800' alt='petservice schema'>
 </p>
 
+[back to top](#menu)
+
 ## Data Dictionary
 
 <table>
  <tr><td><strong>Table Name</strong></td><td> <strong>Field Name</strong></td><td> <strong>Type</strong></td><td> <strong>Null</strong></td><td> <strong>Key</strong></td><td> <strong>Default</strong></td></tr>
-<tr><td>Certification'</td><td> 'CertID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Certification'</td><td> 'Certification_Name'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Certification'</td><td> 'Certification_Desc'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Owner'</td><td> 'OwnerID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Owner'</td><td> 'First_Name'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Owner'</td><td> 'Last_Name'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Owner'</td><td> 'Street_Address'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Owner'</td><td> 'Street_Address_2'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Owner'</td><td> 'City'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Owner'</td><td> 'State'</td><td> 'char(2)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Owner'</td><td> 'ZIP'</td><td> 'char(9)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Owner'</td><td> 'County'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Owner'</td><td> 'Phone_Number'</td><td> 'bigint(20)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Owner'</td><td> 'Email'</td><td> 'varchar(5000)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Pet'</td><td> 'PetID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Pet'</td><td> 'Pet_Name'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Pet'</td><td> 'OwnerID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'MUL'</td><td> NULL</td></tr>
-<tr><td>Pet'</td><td> 'TypeID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'MUL'</td><td> NULL</td></tr>
-<tr><td>Pet'</td><td> 'Gender'</td><td> 'char(1)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Pet'</td><td> 'SizeID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'MUL'</td><td> NULL</td></tr>
-<tr><td>Pet'</td><td> 'Comment'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Service'</td><td> 'ServiceID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Service'</td><td> 'Service_Type'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Service'</td><td> 'Price'</td><td> 'int(11)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Service'</td><td> 'Service_Desc'</td><td> 'varchar(175)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Service_Pet'</td><td> 'TransID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Service_Pet'</td><td> 'PetID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'MUL'</td><td> NULL</td></tr>
-<tr><td>Service_Pet'</td><td> 'ServiceID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'MUL'</td><td> NULL</td></tr>
-<tr><td>Service_Pet'</td><td> 'Date'</td><td> 'date'</td><td> 'NO'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Service_Pet'</td><td> 'WorkerID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'MUL'</td><td> NULL</td></tr>
-<tr><td>Service_Pet'</td><td> 'Rating'</td><td> 'int(11)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Size'</td><td> 'SizeID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Size'</td><td> 'Size_Value'</td><td> 'char(2)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Size'</td><td> 'Size_Desc'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Student'</td><td> 'OwnerID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Student'</td><td> 'University'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Student'</td><td> 'Grade'</td><td> 'char(2)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Student'</td><td> 'Year'</td><td> 'char(2)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Teacher'</td><td> 'OwnerID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Teacher'</td><td> 'School_Name'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Teacher'</td><td> 'School_County'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Teacher'</td><td> 'School_State'</td><td> 'char(2)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Type'</td><td> 'TypeID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Type'</td><td> 'Pet_Type'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Worker'</td><td> 'WorkerID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Worker'</td><td> 'First_Name'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Worker'</td><td> 'Last_Name'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Worker'</td><td> 'Email'</td><td> 'varchar(100)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Worker'</td><td> 'Phone'</td><td> 'char(14)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Worker'</td><td> 'Background_Check_Pass'</td><td> 'char(3)'</td><td> 'NO'</td><td> ''</td><td> NULL</td></tr>
-<tr><td>Worker_Cert'</td><td> 'CertID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Worker_Cert'</td><td> 'WorkerID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
-<tr><td>Worker_Cert'</td><td> 'Date_of_Cert'</td><td> 'date'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
+<tr><td>Certification</td><td> CertID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Certification</td><td> Certification_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Certification</td><td> Certification_Desc</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner</td><td> OwnerID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Owner</td><td> First_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner</td><td> Last_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner</td><td> Street_Address</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner</td><td> Street_Address_2</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner</td><td> City</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner</td><td> State</td><td> char(2)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner</td><td> ZIP</td><td> char(9)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner</td><td> County</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner</td><td> Phone_Number</td><td> bigint(20)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner</td><td> Email</td><td> varchar(5000)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Pet</td><td> PetID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Pet</td><td> Pet_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Pet</td><td> OwnerID</td><td> int(11)</td><td> NO</td><td> MUL</td><td> NULL</td></tr>
+<tr><td>Pet</td><td> TypeID</td><td> int(11)</td><td> NO</td><td> MUL</td><td> NULL</td></tr>
+<tr><td>Pet</td><td> Gender</td><td> char(1)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Pet</td><td> SizeID</td><td> int(11)</td><td> NO</td><td> MUL</td><td> NULL</td></tr>
+<tr><td>Pet</td><td> Comment</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Service</td><td> ServiceID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Service</td><td> Service_Type</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Service</td><td> Price</td><td> int(11)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Service</td><td> Service_Desc</td><td> varchar(175)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Service_Pet</td><td> TransID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Service_Pet</td><td> PetID</td><td> int(11)</td><td> NO</td><td> MUL</td><td> NULL</td></tr>
+<tr><td>Service_Pet</td><td> ServiceID</td><td> int(11)</td><td> NO</td><td> MUL</td><td> NULL</td></tr>
+<tr><td>Service_Pet</td><td> Date</td><td> date</td><td> NO</td><td> </td><td> NULL</td></tr>
+<tr><td>Service_Pet</td><td> WorkerID</td><td> int(11)</td><td> NO</td><td> MUL</td><td> NULL</td></tr>
+<tr><td>Service_Pet</td><td> Rating</td><td> int(11)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Size</td><td> SizeID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Size</td><td> Size_Value</td><td> char(2)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Size</td><td> Size_Desc</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Student</td><td> OwnerID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Student</td><td> University</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Student</td><td> Grade</td><td> char(2)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Student</td><td> Year</td><td> char(2)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Teacher</td><td> OwnerID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Teacher</td><td> School_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Teacher</td><td> School_County</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Teacher</td><td> School_State</td><td> char(2)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Type</td><td> TypeID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Type</td><td> Pet_Type</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Worker</td><td> WorkerID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Worker</td><td> First_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Worker</td><td> Last_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Worker</td><td> Email</td><td> varchar(100)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Worker</td><td> Phone</td><td> char(14)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Worker</td><td> Background_Check_Pass</td><td> char(3)</td><td> NO</td><td> </td><td> NULL</td></tr>
+<tr><td>Worker_Cert</td><td> CertID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Worker_Cert</td><td> WorkerID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Worker_Cert</td><td> Date_of_Cert</td><td> date</td><td> YES</td><td> </td><td> NULL</td></tr>
 <tr><td></td></tr>
 </table>
+
+[back to top](#menu)
 
 
 ## Advanced SQL Statements
 
 ### Stored Procedures
 
+[back to top](#menu)
+
+
 ### Triggers
+
+[back to top](#menu)
+
 
 ### Views
 
+[back to top](#menu)
+
+
 ### Indexes
+
+[back to top](#menu)
+
