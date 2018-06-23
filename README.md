@@ -113,6 +113,7 @@ WHERE
         AND t.table_schema = 'petservice'
 ORDER BY t.table_schema , t.table_name , c.ordinal_position
 ```
+Code was borrorwed and modified from a [stackoverflow](https://stackoverflow.com/questions/9461826/mysql-show-datadictionary-of-tables) question
 
 <table>
  <tr><td><strong>Table Name</strong></td><td> <strong>Field Name</strong></td><td> <strong>Type</strong></td><td> <strong>Null</strong></td><td> <strong>Key</strong></td><td> <strong>Default</strong></td></tr>
