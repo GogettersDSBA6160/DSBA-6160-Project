@@ -71,6 +71,10 @@ To realize the project’s success, the following deliverables must be achieved:
 
 ## EERD
 
+<p align='left'>
+    <img src='./img/eerd.png' width='800' alt='petservice EERD'>
+</p>
+
 ## Schema
 
 ## Data Dictionary
