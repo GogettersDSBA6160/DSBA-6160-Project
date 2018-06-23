@@ -82,8 +82,9 @@ To realize the project’s success, the following deliverables must be achieved:
 </p>
 
 ## Data Dictionary
+
 <table>
-<tr><td># Table Name</td><td> Field Name</td><td> Type</td><td> Null</td><td> Key</td><td> Default</td></tr>
+ <tr><td><strong>Table Name</strong></td><td> <strong>Field Name</strong></td><td> <strong>Type</strong></td><td> <strong>Null</strong></td><td> <strong>Key</strong></td><td> <strong>Default</strong></td></tr>
 <tr><td>Certification'</td><td> 'CertID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
 <tr><td>Certification'</td><td> 'Certification_Name'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
 <tr><td>Certification'</td><td> 'Certification_Desc'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
@@ -139,8 +140,6 @@ To realize the project’s success, the following deliverables must be achieved:
 <tr><td>Worker_Cert'</td><td> 'Date_of_Cert'</td><td> 'date'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
 <tr><td></td></tr>
 </table>
-
-
 
 
 ## Advanced SQL Statements
