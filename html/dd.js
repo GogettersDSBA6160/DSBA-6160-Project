@@ -1,4 +1,4 @@
-<table>
+document.write("<table>
 <b><tr><td>Table Name</td><td> Field Name</td><td> Type</td><td> Null</td><td> Key</td><td> Default</td></tr></b>
 <tr><td>Certification'</td><td> 'CertID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
 <tr><td>Certification'</td><td> 'Certification_Name'</td><td> 'varchar(45)'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
@@ -54,4 +54,4 @@
 <tr><td>Worker_Cert'</td><td> 'WorkerID'</td><td> 'int(11)'</td><td> 'NO'</td><td> 'PRI'</td><td> NULL</td></tr>
 <tr><td>Worker_Cert'</td><td> 'Date_of_Cert'</td><td> 'date'</td><td> 'YES'</td><td> ''</td><td> NULL</td></tr>
 <tr><td></td></tr>
-</table>
+</table>");
