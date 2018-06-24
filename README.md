@@ -180,10 +180,87 @@ Code was borrorwed and modified from a [stackoverflow](https://stackoverflow.com
 
 ### Stored Procedures
 
+Two stored procedures were created to help initiate the creation of a order receipt.  
+
+**Ashok's updated procedure goes here**
+
+The second stored procedure, GET_SUMMARY_BILL_FOR_CUSTOMER(), sums the price of the transaction and summarizes the order.  The inputs are OwnerID and Date of Visit:
+
+```SQl.mysql
+DROP PROCEDURE IF EXISTS GET_SUMMARY_BILL_FOR_CUSTOMER;
+DELIMITER !!!
+CREATE PROCEDURE GET_SUMMARY_BILL_FOR_CUSTOMER
+(IN CustomerNumber int, VisitDate date)
+BEGIN
+SELECT 
+	SP.Date AS 'Visit_Date',
+    O.First_Name,
+    O.Last_Name,
+    COUNT(DISTINCT SP.PetID) as 'Number_of_Pets',
+    CONCAT('$', FORMAT(SUM(S.Price),2)) AS 'Total_Balance_Due',
+    COUNT(Service_Type) AS 'Number_of_Services'
+    
+FROM
+    Owner O
+        JOIN
+    Pet P ON O.OwnerID = P.OwnerID
+        JOIN
+    Service_Pet SP ON SP.PetID = P.PetID
+        JOIN
+    Service S ON S.ServiceID = SP.ServiceID
+WHERE
+    O.OwnerID = CustomerNumber and SP.Date = VisitDate;
+END !!!
+DELIMITER ;
+```
+
+An example of it's use:
+
+```SQL.mysql
+CALL `petservice`.`GET_SUMMARY_BILL_FOR_CUSTOMER`(177, '2016-06-25');
+```
+
 [back to top](#menu)
 
 
 ### Triggers
+
+Three triggers were created to keep a count of how many pets an owner has in the database at any given time.  Each trigger was created on the Pet table to adjust the count accordingly.  
+
+Code to add numofpets to Owner table:
+
+```SQL.mysql
+
+USE petservice;
+ALTER  TABLE Owner ADD numofpets Int(5);
+```
+Code to perform a one-time update of numofpets to initally populate data:
+
+```SQL.mysql
+SET SQL_SAFE_UPDATES = 0;
+UPDATE Owner SET numofpets=(SELECT COUNT(*)
+					FROM Pet
+                    WHERE `Pet`.`OwnerID` = Owner.OwnerID);
+SET SQL_SAFE_UPDATES = 1;
+
+```
+ADDPET Trigger Definition:
+
+```SQL.mysql
+DROP TRIGGER IF EXISTS petservice.ADDPET;
+-- ADD TRIGGER
+ DELIMITER |
+ CREATE TRIGGER ADDPET
+ AFTER INSERT ON Pet
+ FOR EACH ROW
+ BEGIN
+	 UPDATE Owner
+		SET numofpets = numofpets + 1
+        Where Owner.OwnerID = NEW.OwnerID;
+ END |
+ DELIMITER ;   
+```
+
 
 [back to top](#menu)
 
