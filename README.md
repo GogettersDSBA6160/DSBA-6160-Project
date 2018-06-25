@@ -277,8 +277,24 @@ FOR EACH ROW
 		SET numofpets = numofpets - 1
 		WHERE Owner.OwnerID = OLD.OwnerID;
 	END | 
-SELECT * FROM petservice.Owner where ownerid in (3,10);
-Update Pet SET OwnerID = 10 where PetId = 160;
+DELIMITER ;
+```
+Test SWITCHPET Trigger:
+
+```SQL.mysql
+
+UPDATE Pet 
+SET 
+    OwnerID = 10
+WHERE
+    PetId = 160;
+
+SELECT 
+    *
+FROM
+    petservice.Owner
+WHERE
+    ownerid IN (3 , 10);
 ```
 
 DROPPET Trigger Definition:
@@ -296,6 +312,10 @@ FOR EACH ROW
         WHERE Owner.OwnerID = OLD.OwnerID;
 	END |
 DELIMITER ;
+```
+Test DROPPET Trigger:
+
+```SQL.msql
 DELETE FROM Pet WHERE petId = '160';
 Select* from Owner;
 ```
