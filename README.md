@@ -522,4 +522,8 @@ mysqldump.exe --defaults-file="<filepath_to_dump_file>"  --user=<username> --hos
 ```
 Alternatively, Dr. Patel can use MySQL Workbench's GUI to perform a similar action using these settings and hitting the 'Start Export' button:
 
+<p align='left'>
+    <img src='./img/mysql_wb_export.png' width='200' alt='Backup'>
+</p>
+
 [back to top](#menu)
