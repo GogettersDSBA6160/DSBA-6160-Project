@@ -227,14 +227,14 @@ CALL `petservice`.`GET_SUMMARY_BILL_FOR_CUSTOMER`(177, '2016-06-25');
 
 Three triggers were created to keep a count of how many pets an owner has in the database at any given time.  Each trigger was created on the Pet table to adjust the count accordingly.  
 
-Code to add numofpets to Owner table:
+####Code to add numofpets to Owner table:
 
 ```SQL.mysql
 
 USE petservice;
 ALTER  TABLE Owner ADD numofpets Int(5);
 ```
-Code to perform a one-time update of numofpets to initally populate data:
+####Code to perform a one-time update of numofpets to initally populate data:
 
 ```SQL.mysql
 SET SQL_SAFE_UPDATES = 0;
@@ -244,7 +244,7 @@ UPDATE Owner SET numofpets=(SELECT COUNT(*)
 SET SQL_SAFE_UPDATES = 1;
 
 ```
-ADDPET Trigger Definition:
+####ADDPET Trigger Definition:
 
 ```SQL.mysql
 DROP TRIGGER IF EXISTS petservice.ADDPET;
@@ -261,7 +261,12 @@ DROP TRIGGER IF EXISTS petservice.ADDPET;
  DELIMITER ;   
 ```
 
-SWITCHPET Trigger Definition:
+##### Test ADDPET Trigger
+```SQL.mysql
+ INSERT INTO `petservice`.`Pet` (`PetID`, `Pet_Name`, `OwnerID`, `TypeID`, `Gender`, `SizeID`, `Comment`) VALUES ('160', 'Spartacus', '3', '1', 'M', '4', 'Gentle Giant');
+ ```
+
+#### SWITCHPET Trigger Definition:
 
 ```SQL.mysql
 DROP TRIGGER IF EXISTS petservice.SWITCHPET;
@@ -279,7 +284,7 @@ FOR EACH ROW
 	END | 
 DELIMITER ;
 ```
-Test SWITCHPET Trigger:
+##### Test SWITCHPET Trigger:
 
 ```SQL.mysql
 
@@ -297,7 +302,7 @@ WHERE
     ownerid IN (3 , 10);
 ```
 
-DROPPET Trigger Definition:
+#### DROPPET Trigger Definition:
 
 ```SQL.mysql
 DROP TRIGGER IF EXISTS petservice.DROPPET;
@@ -313,11 +318,16 @@ FOR EACH ROW
 	END |
 DELIMITER ;
 ```
-Test DROPPET Trigger:
+##### Test DROPPET Trigger:
 
 ```SQL.msql
-DELETE FROM Pet WHERE petId = '160';
-Select* from Owner;
+DELETE FROM Pet 
+WHERE
+    petId = '160';
+SELECT 
+    *
+FROM
+    Owner;
 ```
 
 [back to top](#menu)
@@ -330,5 +340,31 @@ Select* from Owner;
 
 ### Indexes
 
+#### Service_Pet Table Index
+We chose this index to speed up queries where we are searching for a transaction by date
+```SQl.mysql
+ALTER TABLE service_pet ADD INDEX (date);
+```
+#### Owner Table Index
+This index was chosen Speed up queries to determine if customers are in or out of the state of North Carolina
+```SQl.mysql
+ALTER TABLE Owner ADD INDEX (state);
+```
+#### Pet Table Index
+Pets are most often searched by name.  This index improves efficency of queries where searching by Pet name is in the WHERE clause
+```SQl.mysql
+ALTER TABLE Pet ADD INDEX (Pet_Name(3));
+```
+#### Worker Table Indices
+Searching by First and Last Name are often used to find technicians in the worker table.  Indexing will speed up these queries.  
+```SQL.mysql
+ALTER TABLE Worker ADD INDEX (Last_Name, First_Name);
+ALTER TABLE Worker ADD INDEX (Last_Name);
+```
+#### Worker_Cert Table Index
+We chose this index to speed up queries where we are searching for a technician's  certification by date
+```SQl.mysql
+ALTER TABLE Worker_cert ADD INDEX (Date_of_Cert);
+```
 [back to top](#menu)
 
