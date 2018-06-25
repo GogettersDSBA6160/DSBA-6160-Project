@@ -526,4 +526,6 @@ Alternatively, Dr. Patel can use MySQL Workbench's GUI to perform a similar acti
     <img src='./img/mysql_wb_export.png' width='800' alt='Backup'>
 </p>
 
+We recommend that the database is backed up at a minimum of once per week during non-peak usage.  
+
 [back to top](#menu)
