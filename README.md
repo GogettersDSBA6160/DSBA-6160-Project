@@ -29,7 +29,7 @@
 [back to top](#menu)
 
 ## Executive Summary
-The ‘Go Getters’ project team will consist of Parker Jamison, Khalil Khouy, Paul Blasé and Ashokanand Deo.  The project will document the business rules set forth from the customer.  These business rules will guide the project team during the design of a fully normalized database system implemented in MySQL to replicate the functionality of rover.com for Dr. William Patel.  Dr. Patel would also like to enhance the functionality of his site by adding a training and certification class for the individual service providers.  This project will be completed by June 25th 2018 at the conclusion of the last class session.  
+The ‘Go Getters’ project team will consist of Parker Jamison, Khalil Khouy, Paul Blasé and Ashokanand Deo.  The project will document the business rules set forth from the customer.  These business rules will guide the project team during the design of a fully normalized database system implemented in MySQL to replicate the functionality of rover.com for Dr. William Patel.  Dr. Patel would also like to enhance the functionality of his site by adding a training and certification class for the individual service providers.  This project will be completed by June 25th 2018 at the conclusion of the last class session.  During the course of the project we also convinced Dr. Patel that the pricing on some of his services was too low and has updated his price list with our recommendations.
 
 [back to top](#menu)
 
@@ -392,7 +392,9 @@ FROM
 
 #### Teacher Views
 
-For the views we used, we wanted to be able to create a templates for any cases where Dr. Patel in case he wanted to create offers for his clients that are teachers or students. With the example provided, focusing on teachers, he can utilize a view that shows his clientele that are teachers in North Carolina. This view's definition is:
+For the views we used, we wanted to be able to create templates for any cases where Dr. Patel wanted to create offers for his clients whom are teachers or students. 
+
+With the example provided below, focusing on teachers, he can utilize a view that shows his clientele that are teachers in North Carolina. This view's definition is:
 
 ```SQL.mysql
 
@@ -447,7 +449,7 @@ FROM
 ```
 #### Under Performing Technician 
 
-For the Underperformer Listing, we wanted to provide a tool that offers Dr. Patel some capability to analyze customer-employee interaction. In this case, we are studying who are not preferred, showing the employees rated below average from lowest up to the average. Using this tool, Dr. Patel and quickly evaluate who is struggling with customers and can move forward to ensure that the situation surrounding said employee is handled appropriately. This can just as easily be transitioned into a tool to evaluate the top performers in the customers eyes, which would allow Dr. Patel to reward overachievers in this aspect.
+For the underperformer listing, we wanted to provide a tool that offers Dr. Patel some capability to analyze customer-employee interaction. In this case, we are studying who are not preferred, showing the employees rated below average from lowest up to the average. Using this tool, Dr. Patel can quickly evaluate who is struggling with customers and can move forward to ensure that the situation surrounding said employee is handled appropriately. This can just as easily be transitioned into a tool to evaluate the top performers in the customer's eyes, which would allow Dr. Patel to reward overachievers in this aspect.
 
 This view's definition is:
 
@@ -504,7 +506,7 @@ ALTER TABLE Worker ADD INDEX (Last_Name, First_Name);
 ALTER TABLE Worker ADD INDEX (Last_Name);
 ```
 #### Worker_Cert Table Index
-We chose this index to speed up queries where we are searching for a technician's  certification by date
+We chose this index to speed up queries where we are searching for a technician's certification by date
 ```SQl.mysql
 ALTER TABLE Worker_cert ADD INDEX (Date_of_Cert);
 ```
