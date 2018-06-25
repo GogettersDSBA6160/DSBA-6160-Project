@@ -25,12 +25,12 @@
 
 **Members:** Parker Jamison, Paul Blase, Khalil Khouy, Ashokanand Deo
 
-**Description:** Our goal is to sucessfully complete our DSBA 6160 Project 
+**Description:** Our goal is to sucessfully complete our DSBA 6160 Project
 
 [back to top](#menu)
 
 ## Executive Summary
-The ‘Go Getters’ project team will consist of Parker Jamison, Khalil Khouy, Paul Blasé and Ashokanand Deo.  The project will document the business rules set forth from the customer.  These business rules will guide the project team during the design of a fully normalized database system implemented in MySQL to replicate the functionality of rover.com for Dr. William Patel.  Dr. Patel would also like to enhance the functionality of his site by adding a training and certification class for the individual service providers.  This project will be completed by June 25th 2018 at the conclusion of the last class session.  During the course of the project we also convinced Dr. Patel that the pricing on some of his services was too low and has updated his price list with our recommendations.
+The ‘Go Getters’ project team will consist of Parker Jamison, Khalil Khouy, Paul Blasé and Ashokanand Deo.  The project will document the business rules set forth from the customer.  These business rules will guide the project team during the design of a fully normalized database system implemented in MySQL to replicate the functionality of rover.com for Dr. William Patel.  Dr. Patel would also like to enhance the functionality of his site by adding a training and certification class for the individual service providers.  This project will be completed by June 25th 2018 at the conclusion of the last class session.  During the course of the project we also convinced Dr. Patel that the pricing on some of his services was too low and has updated his price list with our recommendations.  We all recommend the name for Dr. Patel's pet service be ***Dr. Patel's Pet Authority***.  
 
 [back to top](#menu)
 
