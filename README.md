@@ -184,6 +184,7 @@ Two stored procedures were created to help initiate the creation of a order rece
 The first stored procedure, GET_BALANCE_FOR_PET, retreives all services and prices for a given pet. The inputs are PetID and Date of Visit 
 
 ```SQL.mysql
+
 DROP PROCEDURE IF EXISTS GET_BALANCE_FOR_PET;
 
 DELIMITER !!!
@@ -214,11 +215,14 @@ WHERE
         AND A.Date = Dateofservice;
 END !!!
 DELIMITER ;
+
 ```
 An example of it's use:
 
 ```SQL.mysql
+
 CALL `petservice`.`GET_BALANCE_FOR_PET`(148, '2016-06-25');
+
 ```
 <table>
 	<tr><td><strong># Date</strong></td><td><strong>PetID</strong></td><td><strong>Service</strong></td><td><strong>Balance Due</strong></td><td><strong>Customer Name</strong></td><td><strong>Pet_Name</strong></td><td><strong>Pet_Type</strong></td></tr>
@@ -230,8 +234,11 @@ CALL `petservice`.`GET_BALANCE_FOR_PET`(148, '2016-06-25');
 The second stored procedure, GET_SUMMARY_BILL_FOR_CUSTOMER, sums the price of the transaction and summarizes the order for the owner/customer.  The inputs are OwnerID and Date of Visit:
 
 ```SQl.mysql
+
 DROP PROCEDURE IF EXISTS GET_SUMMARY_BILL_FOR_CUSTOMER;
+
 DELIMITER !!!
+
 CREATE PROCEDURE GET_SUMMARY_BILL_FOR_CUSTOMER
 (IN CustomerNumber int, VisitDate date)
 BEGIN
