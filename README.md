@@ -13,6 +13,7 @@
   * [Triggers](#triggers)
   * [Views](#views)
   * [Indexes](#indexes)
+* [Database Backup Instructions](#database-backup-instructions)
   
 ## Group Information
 
@@ -512,3 +513,13 @@ ALTER TABLE Worker_cert ADD INDEX (Date_of_Cert);
 ```
 [back to top](#menu)
 
+### Database Backup Instructions
+
+The database in MySQL can be backed up by issuing the following command at the MySQL command line:
+
+```
+mysqldump.exe --defaults-file="<filepath_to_dump_file>"  --user=<username> --host=<hostname_of_instance> --protocol=tcp --port=3306 --default-character-set=utf8 --single-transaction=TRUE --routines "petservice"
+```
+Alternatively, Dr. Patel can use MySQL Workbench's GUI to perform a similar action using these settings and hitting the 'Start Export' button:
+
+[back to top](#menu)
