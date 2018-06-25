@@ -170,7 +170,6 @@ Code was borrorwed and modified from a [stackoverflow](https://stackoverflow.com
 <tr><td>Worker_Cert</td><td> CertID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
 <tr><td>Worker_Cert</td><td> WorkerID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
 <tr><td>Worker_Cert</td><td> Date_of_Cert</td><td> date</td><td> YES</td><td> </td><td> NULL</td></tr>
-<tr><td></td></tr>
 </table>
 
 [back to top](#menu)
@@ -215,9 +214,18 @@ WHERE
         AND A.Date = Dateofservice;
 END !!!
 DELIMITER ;
+```
+An example of it's use:
 
+```SQL.mysql
 CALL `petservice`.`GET_BALANCE_FOR_PET`(148, '2016-06-25');
 ```
+<table>
+	<tr><td><strong># Date</strong></td><td><strong>PetID</strong></td><td><strong>Service</strong></td><td><strong>Balance Due</strong></td><td><strong>Customer Name</strong></td><td><strong>Pet_Name</strong></td><td><strong>Pet_Type</strong></td></tr>
+<tr><td>2016-06-25</td><td> 148</td><td> Weekday Services</td><td> 115</td><td> Joesph Degonia</td><td> Henry</td><td> Dog</td></tr>
+<tr><td>2016-06-25</td><td> 148</td><td> Pet Taxi</td><td> 80</td><td> Joesph Degonia</td><td> Henry</td><td> Dog</td></tr>
+<tr><td>2016-06-25</td><td> 148</td><td> Term Care</td><td> 65</td><td> Joesph Degonia</td><td> Henry</td><td> Dog</td></tr>
+</table>
 
 The second stored procedure, GET_SUMMARY_BILL_FOR_CUSTOMER, sums the price of the transaction and summarizes the order for the owner/customer.  The inputs are OwnerID and Date of Visit:
 
@@ -254,6 +262,11 @@ An example of it's use:
 ```SQL.mysql
 CALL `petservice`.`GET_SUMMARY_BILL_FOR_CUSTOMER`(177, '2016-06-25');
 ```
+<table>
+<tr><td><strong># Visit_Date</strong></td><td><strong>First_Name</strong></td><td><strong>Last_Name</strong></td><td><strong>Number_of_Pets</strong></td><td> <strong>Total_Balance_Due</strong></td><td><strong>Number_of_Services</strong></td></tr>
+<tr><td>2016-06-25</td><td> Joesph</td><td> Degonia</td><td> 1</td><td> $260.00</td><td> 3</td></tr>
+</table>
+
 
 [back to top](#menu)
 
@@ -369,6 +382,56 @@ FROM
 
 
 ### Views
+
+#### Teacher Views
+
+DESC
+
+```SQL.mysql
+
+CREATE VIEW NC_Teachers AS
+SELECT CONCAT(Owner.First_Name, ' ', Owner.Last_Name) AS OwnerName, 
+CONCAT(Owner.Street_Address, ', ', Owner.City, ', ', Owner.State) AS Address, 
+Owner.Phone_Number AS Phone, Owner.Email, Teacher.School_Name AS School 
+FROM Owner
+INNER JOIN Teacher
+ON Owner.OwnerID = Teacher.OwnerID
+WHERE Owner.state = "NC";
+```
+DESC 2 
+
+```SQL.mysql
+CREATE VIEW NC_High_School_Teachers AS
+SELECT CONCAT(Owner.First_Name, ' ', Owner.Last_Name) AS OwnerName, 
+CONCAT(Owner.Street_Address, ', ', Owner.City, ', ', Owner.State) AS Address, 
+Owner.Phone_Number AS Phone, Owner.Email, Teacher.School_Name AS School 
+FROM Owner
+INNER JOIN Teacher
+ON Owner.OwnerID = Teacher.OwnerID
+WHERE Owner.state = "NC"
+AND teacher.School_Name LIKE "%high%";
+
+SELECT * FROM NC_Teachers;
+SELECT * FROM NC_High_School_Teachers;
+```
+#### Under Performing Technician 
+
+DESC 3
+
+```SQL.mysql
+CREATE VIEW Underperformer_List AS
+SELECT w.First_Name, w.Last_Name, AVG(sp.Rating) as 'AverageRating', 
+COUNT(sp.Rating) as 'ServicesPerformed'  
+FROM Worker as w
+LEFT JOIN Service_Pet as sp on w.WorkerID = sp.WorkerID
+GROUP BY w.WorkerID
+HAVING AverageRating IS NOT NULL 
+AND AverageRating < (SELECT avg(Rating) FROM service_pet)
+AND ServicesPerformed >= 1
+ORDER BY AverageRating, ServicesPerformed desc;
+
+SELECT * FROM Underperformer_List;
+```
 
 [back to top](#menu)
 
