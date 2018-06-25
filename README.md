@@ -227,14 +227,14 @@ CALL `petservice`.`GET_SUMMARY_BILL_FOR_CUSTOMER`(177, '2016-06-25');
 
 Three triggers were created to keep a count of how many pets an owner has in the database at any given time.  Each trigger was created on the Pet table to adjust the count accordingly.  
 
-####Code to add numofpets to Owner table:
+#### Code to add numofpets to Owner table:
 
 ```SQL.mysql
 
 USE petservice;
 ALTER  TABLE Owner ADD numofpets Int(5);
 ```
-####Code to perform a one-time update of numofpets to initally populate data:
+#### Code to perform a one-time update of numofpets to initally populate data:
 
 ```SQL.mysql
 SET SQL_SAFE_UPDATES = 0;
@@ -244,7 +244,7 @@ UPDATE Owner SET numofpets=(SELECT COUNT(*)
 SET SQL_SAFE_UPDATES = 1;
 
 ```
-####ADDPET Trigger Definition:
+#### ADDPET Trigger Definition:
 
 ```SQL.mysql
 DROP TRIGGER IF EXISTS petservice.ADDPET;
