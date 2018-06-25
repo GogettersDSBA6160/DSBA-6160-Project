@@ -392,52 +392,89 @@ FROM
 
 #### Teacher Views
 
-For the views we used, we wanted to be able to create a templates for any cases where Dr. Patel in case he wanted to create offers for his clients that are teachers or students. With the example provided, focusing on teachers, he can utilize a view that shows his clientele that are teachers in North Carolina. 
+For the views we used, we wanted to be able to create a templates for any cases where Dr. Patel in case he wanted to create offers for his clients that are teachers or students. With the example provided, focusing on teachers, he can utilize a view that shows his clientele that are teachers in North Carolina. This view's definition is:
 
 ```SQL.mysql
 
 CREATE VIEW NC_Teachers AS
-SELECT CONCAT(Owner.First_Name, ' ', Owner.Last_Name) AS OwnerName, 
-CONCAT(Owner.Street_Address, ', ', Owner.City, ', ', Owner.State) AS Address, 
-Owner.Phone_Number AS Phone, Owner.Email, Teacher.School_Name AS School 
-FROM Owner
-INNER JOIN Teacher
-ON Owner.OwnerID = Teacher.OwnerID
-WHERE Owner.state = "NC";
+    SELECT 
+        CONCAT(Owner.First_Name, ' ', Owner.Last_Name) AS OwnerName,
+        CONCAT(Owner.Street_Address,
+                ', ',
+                Owner.City,
+                ', ',
+                Owner.State) AS Address,
+        Owner.Phone_Number AS Phone,
+        Owner.Email,
+        Teacher.School_Name AS School
+    FROM
+        Owner
+            INNER JOIN
+        Teacher ON Owner.OwnerID = Teacher.OwnerID
+    WHERE
+        Owner.state = 'NC';
 ```
-Additionally, with the High School Teachers as an example, he can provide different offers to teachers of high school students. However, this would also work if he wished to provide a deal for teachers from a specific school and wanted provide the front desk with a list of said teachers.
+Additionally, with the High School Teachers as an example, he can provide different offers to teachers of high school students. However, this would also work if he wished to provide a deal for teachers from a specific school and wanted provide the front desk with a list of said teachers. This view's definition is:
 
 ```SQL.mysql
 CREATE VIEW NC_High_School_Teachers AS
-SELECT CONCAT(Owner.First_Name, ' ', Owner.Last_Name) AS OwnerName, 
-CONCAT(Owner.Street_Address, ', ', Owner.City, ', ', Owner.State) AS Address, 
-Owner.Phone_Number AS Phone, Owner.Email, Teacher.School_Name AS School 
-FROM Owner
-INNER JOIN Teacher
-ON Owner.OwnerID = Teacher.OwnerID
-WHERE Owner.state = "NC"
-AND teacher.School_Name LIKE "%high%";
+    SELECT 
+        CONCAT(Owner.First_Name, ' ', Owner.Last_Name) AS OwnerName,
+        CONCAT(Owner.Street_Address,
+                ', ',
+                Owner.City,
+                ', ',
+                Owner.State) AS Address,
+        Owner.Phone_Number AS Phone,
+        Owner.Email,
+        Teacher.School_Name AS School
+    FROM
+        Owner
+            INNER JOIN
+        Teacher ON Owner.OwnerID = Teacher.OwnerID
+    WHERE
+        Owner.state = 'NC'
+            AND teacher.School_Name LIKE '%high%';
 
-SELECT * FROM NC_Teachers;
-SELECT * FROM NC_High_School_Teachers;
+SELECT 
+    *
+FROM
+    NC_Teachers;
+SELECT 
+    *
+FROM
+    NC_High_School_Teachers;
 ```
 #### Under Performing Technician 
 
 For the Underperformer Listing, we wanted to provide a tool that offers Dr. Patel some capability to analyze customer-employee interaction. In this case, we are studying who are not preferred, showing the employees rated below average from lowest up to the average. Using this tool, Dr. Patel and quickly evaluate who is struggling with customers and can move forward to ensure that the situation surrounding said employee is handled appropriately. This can just as easily be transitioned into a tool to evaluate the top performers in the customers eyes, which would allow Dr. Patel to reward overachievers in this aspect.
 
+This view's definition is:
+
 ```SQL.mysql
 CREATE VIEW Underperformer_List AS
-SELECT w.First_Name, w.Last_Name, AVG(sp.Rating) as 'AverageRating', 
-COUNT(sp.Rating) as 'ServicesPerformed'  
-FROM Worker as w
-LEFT JOIN Service_Pet as sp on w.WorkerID = sp.WorkerID
-GROUP BY w.WorkerID
-HAVING AverageRating IS NOT NULL 
-AND AverageRating < (SELECT avg(Rating) FROM service_pet)
-AND ServicesPerformed >= 1
-ORDER BY AverageRating, ServicesPerformed desc;
+    SELECT 
+        w.First_Name,
+        w.Last_Name,
+        AVG(sp.Rating) AS 'AverageRating',
+        COUNT(sp.Rating) AS 'ServicesPerformed'
+    FROM
+        Worker AS w
+            LEFT JOIN
+        Service_Pet AS sp ON w.WorkerID = sp.WorkerID
+    GROUP BY w.WorkerID
+    HAVING AverageRating IS NOT NULL
+        AND AverageRating < (SELECT 
+            AVG(Rating)
+        FROM
+            service_pet)
+        AND ServicesPerformed >= 1
+    ORDER BY AverageRating , ServicesPerformed DESC;
 
-SELECT * FROM Underperformer_List;
+SELECT 
+    *
+FROM
+    Underperformer_List;
 ```
 
 [back to top](#menu)
