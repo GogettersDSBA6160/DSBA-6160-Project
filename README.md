@@ -182,9 +182,44 @@ Code was borrorwed and modified from a [stackoverflow](https://stackoverflow.com
 
 Two stored procedures were created to help initiate the creation of a order receipt.  
 
-**Ashok's updated procedure goes here**
+The first stored procedure, GET_BALANCE_FOR_PET, retreives all services and prices for a given pet. The inputs are PetID and Date of Visit 
 
-The second stored procedure, GET_SUMMARY_BILL_FOR_CUSTOMER(), sums the price of the transaction and summarizes the order.  The inputs are OwnerID and Date of Visit:
+```SQL.mysql
+DROP PROCEDURE IF EXISTS GET_BALANCE_FOR_PET;
+
+DELIMITER !!!
+
+CREATE PROCEDURE GET_BALANCE_FOR_PET
+(IN Petnumber int, IN Dateofservice DATE)
+BEGIN
+SELECT 
+    A.Date,
+    A.PetID,
+    B.Service_Type AS 'Service',
+    B.price AS 'Balance Due',
+    CONCAT(C.First_Name, ' ', C.Last_Name) AS 'Customer Name',
+    D.Pet_Name,
+    E.Pet_Type
+FROM
+    Service_Pet A,
+    Service B,
+    Owner C,
+    Pet D,
+    Type E
+WHERE
+    A.ServiceID = B.ServiceID
+        AND D.PetID = A.PetID
+        AND C.OwnerID = D.OwnerID
+        AND E.TypeID = D.TypeID
+        AND A.petId = Petnumber
+        AND A.Date = Dateofservice;
+END !!!
+DELIMITER ;
+
+CALL `petservice`.`GET_BALANCE_FOR_PET`(148, '2016-06-25');
+```
+
+The second stored procedure, GET_SUMMARY_BILL_FOR_CUSTOMER, sums the price of the transaction and summarizes the order for the owner/customer.  The inputs are OwnerID and Date of Visit:
 
 ```SQl.mysql
 DROP PROCEDURE IF EXISTS GET_SUMMARY_BILL_FOR_CUSTOMER;
