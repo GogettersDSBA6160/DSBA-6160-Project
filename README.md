@@ -261,6 +261,44 @@ DROP TRIGGER IF EXISTS petservice.ADDPET;
  DELIMITER ;   
 ```
 
+SWITCHPET Trigger Definition:
+
+```SQL.mysql
+DROP TRIGGER IF EXISTS petservice.SWITCHPET;
+DELIMITER |
+CREATE TRIGGER SWITCHPET
+AFTER UPDATE ON Pet
+FOR EACH ROW
+	BEGIN
+		UPDATE Owner
+		SET numofpets = numofpets + 1
+		WHERE Owner.OwnerID = NEW.OwnerID;
+		UPDATE Owner
+		SET numofpets = numofpets - 1
+		WHERE Owner.OwnerID = OLD.OwnerID;
+	END | 
+SELECT * FROM petservice.Owner where ownerid in (3,10);
+Update Pet SET OwnerID = 10 where PetId = 160;
+```
+
+DROPPET Trigger Definition:
+
+```SQL.mysql
+DROP TRIGGER IF EXISTS petservice.DROPPET;
+-- DROP TRIGGER
+DELIMITER |
+CREATE TRIGGER DROPPET
+AFTER DELETE ON Pet
+FOR EACH ROW
+	BEGIN
+		UPDATE Owner
+        SET numofpets = numofpets - 1
+        WHERE Owner.OwnerID = OLD.OwnerID;
+	END |
+DELIMITER ;
+DELETE FROM Pet WHERE petId = '160';
+Select* from Owner;
+```
 
 [back to top](#menu)
 
