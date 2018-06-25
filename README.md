@@ -392,7 +392,7 @@ FROM
 
 #### Teacher Views
 
-DESC
+For the views we used, we wanted to be able to create a templates for any cases where Dr. Patel in case he wanted to create offers for his clients that are teachers or students. With the example provided, focusing on teachers, he can utilize a view that shows his clientele that are teachers in North Carolina. 
 
 ```SQL.mysql
 
@@ -405,7 +405,7 @@ INNER JOIN Teacher
 ON Owner.OwnerID = Teacher.OwnerID
 WHERE Owner.state = "NC";
 ```
-DESC 2 
+Additionally, with the High School Teachers as an example, he can provide different offers to teachers of high school students. However, this would also work if he wished to provide a deal for teachers from a specific school and wanted provide the front desk with a list of said teachers.
 
 ```SQL.mysql
 CREATE VIEW NC_High_School_Teachers AS
@@ -423,7 +423,7 @@ SELECT * FROM NC_High_School_Teachers;
 ```
 #### Under Performing Technician 
 
-DESC 3
+For the Underperformer Listing, we wanted to provide a tool that offers Dr. Patel some capability to analyze customer-employee interaction. In this case, we are studying who are not preferred, showing the employees rated below average from lowest up to the average. Using this tool, Dr. Patel and quickly evaluate who is struggling with customers and can move forward to ensure that the situation surrounding said employee is handled appropriately. This can just as easily be transitioned into a tool to evaluate the top performers in the customers eyes, which would allow Dr. Patel to reward overachievers in this aspect.
 
 ```SQL.mysql
 CREATE VIEW Underperformer_List AS
