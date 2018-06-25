@@ -320,7 +320,7 @@ DELIMITER ;
 ```
 ##### Test DROPPET Trigger:
 
-```SQL.msql
+```SQL.mysql
 DELETE FROM Pet 
 WHERE
     petId = '160';
