@@ -117,7 +117,7 @@ ORDER BY t.table_schema , t.table_name , c.ordinal_position
 Code was borrorwed and modified from a [stackoverflow](https://stackoverflow.com/questions/9461826/mysql-show-datadictionary-of-tables) question
 
 <table>
- <tr><td><strong>Table Name</strong></td><td> <strong>Field Name</strong></td><td> <strong>Type</strong></td><td> <strong>Null</strong></td><td> <strong>Key</strong></td><td> <strong>Default</strong></td></tr>
+<tr><td><strong>Table Name</strong></td><td> <strong>Field Name</strong></td><td> <strong>Type</strong></td><td> <strong>Null</strong></td><td> <strong>Key</strong></td><td> <strong>Default</strong></td></tr>
 <tr><td>Certification</td><td> CertID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
 <tr><td>Certification</td><td> Certification_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
 <tr><td>Certification</td><td> Certification_Desc</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
@@ -132,6 +132,20 @@ Code was borrorwed and modified from a [stackoverflow](https://stackoverflow.com
 <tr><td>Owner</td><td> County</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
 <tr><td>Owner</td><td> Phone_Number</td><td> bigint(20)</td><td> YES</td><td> </td><td> NULL</td></tr>
 <tr><td>Owner</td><td> Email</td><td> varchar(5000)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner</td><td> numofpets</td><td> int(5)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> OwnerDeletedID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> OwnerID</td><td> int(11)</td><td> NO</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> First_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> Last_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> Street_Address</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> Street_Address_2</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> City</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> State</td><td> char(2)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> ZIP</td><td> char(9)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> County</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> Phone_Number</td><td> bigint(20)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> Email</td><td> varchar(5000)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Owner_Deleted</td><td> Date_Deleted</td><td> datetime</td><td> NO</td><td> </td><td> NULL</td></tr>
 <tr><td>Pet</td><td> PetID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
 <tr><td>Pet</td><td> Pet_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
 <tr><td>Pet</td><td> OwnerID</td><td> int(11)</td><td> NO</td><td> MUL</td><td> NULL</td></tr>
@@ -139,6 +153,15 @@ Code was borrorwed and modified from a [stackoverflow](https://stackoverflow.com
 <tr><td>Pet</td><td> Gender</td><td> char(1)</td><td> YES</td><td> </td><td> NULL</td></tr>
 <tr><td>Pet</td><td> SizeID</td><td> int(11)</td><td> NO</td><td> MUL</td><td> NULL</td></tr>
 <tr><td>Pet</td><td> Comment</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Pet_Deleted</td><td> PetDeletedID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
+<tr><td>Pet_Deleted</td><td> PetID</td><td> int(11)</td><td> NO</td><td> </td><td> NULL</td></tr>
+<tr><td>Pet_Deleted</td><td> Pet_Name</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Pet_Deleted</td><td> OwnerID</td><td> int(11)</td><td> NO</td><td> MUL</td><td> NULL</td></tr>
+<tr><td>Pet_Deleted</td><td> TypeID</td><td> int(11)</td><td> NO</td><td> MUL</td><td> NULL</td></tr>
+<tr><td>Pet_Deleted</td><td> Gender</td><td> char(1)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Pet_Deleted</td><td> SizeID</td><td> int(11)</td><td> NO</td><td> MUL</td><td> NULL</td></tr>
+<tr><td>Pet_Deleted</td><td> Comment</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
+<tr><td>Pet_Deleted</td><td> Date_Deleted</td><td> datetime</td><td> NO</td><td> </td><td> NULL</td></tr>
 <tr><td>Service</td><td> ServiceID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
 <tr><td>Service</td><td> Service_Type</td><td> varchar(45)</td><td> YES</td><td> </td><td> NULL</td></tr>
 <tr><td>Service</td><td> Price</td><td> int(11)</td><td> YES</td><td> </td><td> NULL</td></tr>
@@ -172,6 +195,7 @@ Code was borrorwed and modified from a [stackoverflow](https://stackoverflow.com
 <tr><td>Worker_Cert</td><td> WorkerID</td><td> int(11)</td><td> NO</td><td> PRI</td><td> NULL</td></tr>
 <tr><td>Worker_Cert</td><td> Date_of_Cert</td><td> date</td><td> YES</td><td> </td><td> NULL</td></tr>
 </table>
+
 
 [back to top](#menu)
 
