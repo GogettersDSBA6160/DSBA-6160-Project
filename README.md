@@ -281,7 +281,7 @@ CALL `petservice`.`GET_SUMMARY_BILL_FOR_CUSTOMER`(177, '2016-06-25');
 
 ### Triggers
 
-Three triggers were created to keep a count of how many pets an owner has in the database at any given time.  Each trigger was created on the Pet table to adjust the count accordingly.  
+Three triggers were created to keep a count of how many pets an owner has in the database at any given time.  Each trigger was created on the Pet table to adjust the count accordingly.  Two additional actions are taken when Pets and Owners are deleted.  The DROPPET and DROPOWNER triggers will insert the deleted row into an archive table named Pet_Deleted and Owner_Deleted so Dr. Patel can easily see the deleted Owners and Pets over time.  
 
 #### Code to add numofpets to Owner table:
 
@@ -400,10 +400,9 @@ DELIMITER ;
 DELETE FROM Pet 
 WHERE
     petId = '160';
-SELECT 
-    *
-FROM
-    Owner;
+SELECT * FROM Owner;
+ 
+SELECT * FROM petservice.Pet_Deleted;
 ```
 
 #### DROPOWNER Trigger Definition:
@@ -459,6 +458,8 @@ INSERT INTO `petservice`.`Owner` (`OwnerID`, `First_Name`, `Last_Name`, `Street_
 DELETE FROM Owner
 WHERE
     OwnerID = '501';
+    
+SELECT * FROM petservice.Owner_Deleted;
 ```
 
 [back to top](#menu)
