@@ -368,9 +368,29 @@ CREATE TRIGGER DROPPET
 AFTER DELETE ON Pet
 FOR EACH ROW
 	BEGIN
-		UPDATE Owner
+		INSERT INTO `petservice`.`Pet_Deleted`
+(`PetID`,
+`Pet_Name`,
+`OwnerID`,
+`TypeID`,
+`Gender`,
+`SizeID`,
+`Comment`,
+`Date_Deleted`)
+VALUES
+(OLD.`PetID`,
+OLD.`Pet_Name`,
+OLD.`OwnerID`,
+OLD.`TypeID`,
+OLD.`Gender`,
+OLD.`SizeID`,
+OLD.`Comment`,
+NOW());
+
+UPDATE Owner
         SET numofpets = numofpets - 1
         WHERE Owner.OwnerID = OLD.OwnerID;
+
 	END |
 DELIMITER ;
 ```
@@ -384,6 +404,61 @@ SELECT
     *
 FROM
     Owner;
+```
+
+#### DROPOWNER Trigger Definition:
+
+```SQL.mysql
+DROP TRIGGER IF EXISTS petservice.DROPOWNER;
+-- DROP TRIGGER
+DELIMITER |
+CREATE TRIGGER DROPOWNER
+AFTER DELETE ON Owner
+FOR EACH ROW
+	BEGIN
+		INSERT INTO `petservice`.`Owner_Deleted`
+(`OwnerID`,
+`First_Name`,
+`Last_Name`,
+`Street_Address`,
+`Street_Address_2`,
+`City`,
+`State`,
+`ZIP`,
+`County`,
+`Phone_Number`,
+`Email`,
+`Date_Deleted`)
+VALUES
+(OLD.`OwnerID`,
+OLD.`First_Name`,
+OLD.`Last_Name`,
+OLD.`Street_Address`,
+OLD.`Street_Address_2`,
+OLD.`City`,
+OLD.`State`,
+OLD.`ZIP`,
+OLD.`County`,
+OLD.`Phone_Number`,
+OLD.`Email`,
+NOW());
+
+
+	END |
+DELIMITER ;
+```
+
+#### Test DROPOWNER Trigger:
+```SQL.mysql
+SELECT * FROM petservice.Owner;
+
+
+INSERT INTO `petservice`.`Owner` (`OwnerID`, `First_Name`, `Last_Name`, `Street_Address`, `City`, `State`, `ZIP`, `County`, `Phone_Number`, `Email`, `numofpets`) VALUES ('501', 'Peter', 'Butler', '5 Trade St', 'Charlotte', 'NC', '28202', 'Mecklenburg', '5555555555', 'pbutler@fakemailaddress.org', '0');
+
+
+DELETE FROM Owner
+WHERE
+    OwnerID = '501';
 ```
 
 [back to top](#menu)
